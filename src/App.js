@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Switch} from 'react-router-dom';
 import './App.css';
+import Main     from './components/main/main';
+import AddEdit from './components/addEdit/addEdit';
+import AboutMe from './components/aboutMe/aboutMe';
+import t from './tools/getLabel';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+function App() {
+  const lang = 'en'; //Get from cookie
+  
+
+  console.log(window.language);
+
+  return (
+    <div>
+      <Switch>    
+          <Route path="/:lang/addEdit" exact component={AddEdit} />
+          <Route path="/:lang/aboutMe" exact component={AboutMe} />
+          <Route path="/:lang" component={Main} />
+      </Switch>
+      <footer>FOOTER</footer>
+    </div>
+  );
 }
 
 export default App;
